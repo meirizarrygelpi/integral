@@ -28,11 +28,11 @@ func (z *Complex) Cartesian() (*big.Int, *big.Int) {
 func (z *Complex) String() string {
 	a := make([]string, 5)
 	a[0] = "("
-	a[1] = fmt.Sprintf("%v", z.l)
+	a[1] = fmt.Sprintf("%v", &z.l)
 	if z.r.Sign() == -1 {
-		a[2] = fmt.Sprintf("%v", z.r)
+		a[2] = fmt.Sprintf("%v", &z.r)
 	} else {
-		a[2] = fmt.Sprintf("+%v", z.r)
+		a[2] = fmt.Sprintf("+%v", &z.r)
 	}
 	a[3] = "i"
 	a[4] = ")"

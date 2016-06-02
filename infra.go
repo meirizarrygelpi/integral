@@ -28,11 +28,11 @@ func (z *Infra) Cartesian() (a, b *big.Int) {
 func (z *Infra) String() string {
 	a := make([]string, 5)
 	a[0] = "("
-	a[1] = fmt.Sprintf("%v", z.l)
+	a[1] = fmt.Sprintf("%v", &z.l)
 	if z.r.Sign() == -1 {
-		a[2] = fmt.Sprintf("%v", z.r)
+		a[2] = fmt.Sprintf("%v", &z.r)
 	} else {
-		a[2] = fmt.Sprintf("+%v", z.r)
+		a[2] = fmt.Sprintf("+%v", &z.r)
 	}
 	a[3] = "α"
 	a[4] = ")"
