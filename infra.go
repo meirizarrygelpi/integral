@@ -133,7 +133,7 @@ func (z *Infra) IsZeroDiv() bool {
 // Quo sets z equal to the quotient of x and y, and returns z.
 func (z *Infra) Quo(x, y *Infra) *Infra {
 	if y.IsZeroDiv() {
-		panic("denominator is zero divisor")
+		panic("zero divisor denominator")
 	}
 	quad := y.Quad()
 	z.Conj(y)

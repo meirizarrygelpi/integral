@@ -72,7 +72,7 @@ func (z *Complex) Scal(y *Complex, a *big.Int) *Complex {
 // Neg sets z equal to the negative of y, and returns z.
 func (z *Complex) Neg(y *Complex) *Complex {
 	z.l.Neg(&y.l)
-	z.r.Neg(&z.r)
+	z.r.Neg(&y.r)
 	return z
 }
 
@@ -133,6 +133,10 @@ func (z *Complex) Quad() *big.Int {
 // Quo sets z equal to the quotient of x and y, and returns z. Note that
 // truncated division is used.
 func (z *Complex) Quo(x, y *Complex) *Complex {
+	zero := new(Complex)
+	if y.Equals(zero) {
+		panic("zero denominator")
+	}
 	quad := y.Quad()
 	z.Conj(y)
 	z.Mul(x, z)

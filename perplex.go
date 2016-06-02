@@ -145,7 +145,7 @@ func (z *Perplex) IsZeroDiv() bool {
 // truncated division is used.
 func (z *Perplex) Quo(x, y *Perplex) *Perplex {
 	if y.IsZeroDiv() {
-		panic("denominator is zero divisor")
+		panic("zero divisor denominator")
 	}
 	quad := y.Quad()
 	z.Conj(y)
