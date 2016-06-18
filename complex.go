@@ -16,6 +16,11 @@ type Complex struct {
 	l, r big.Int
 }
 
+// Real returns the (integral) real part of z.
+func (z *Complex) Real() *big.Int {
+	return &z.l
+}
+
 // Cartesian returns the two integral cartesian components of z.
 func (z *Complex) Cartesian() (*big.Int, *big.Int) {
 	return &z.l, &z.r
@@ -133,8 +138,7 @@ func (z *Complex) Quad() *big.Int {
 // Quo sets z equal to the quotient of x and y, and returns z. Note that
 // truncated division is used.
 func (z *Complex) Quo(x, y *Complex) *Complex {
-	zero := new(Complex)
-	if y.Equals(zero) {
+	if zero := new(Complex); y.Equals(zero) {
 		panic("zero denominator")
 	}
 	quad := y.Quad()

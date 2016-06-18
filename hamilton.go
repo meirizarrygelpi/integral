@@ -18,6 +18,11 @@ type Hamilton struct {
 	l, r Complex
 }
 
+// Real returns the (integral) real part of z.
+func (z *Hamilton) Real() *big.Int {
+	return (&z.l).Real()
+}
+
 // Cartesian returns the four integral Cartesian components of z.
 func (z *Hamilton) Cartesian() (*big.Int, *big.Int, *big.Int, *big.Int) {
 	return &z.l.l, &z.l.r, &z.r.l, &z.r.r
@@ -154,8 +159,7 @@ func (z *Hamilton) Quad() *big.Int {
 // Quo sets z equal to the quotient of x and y, and returns z. Note that
 // truncated division is used.
 func (z *Hamilton) Quo(x, y *Hamilton) *Hamilton {
-	zero := new(Hamilton)
-	if y.Equals(zero) {
+	if zero := new(Hamilton); y.Equals(zero) {
 		panic("zero denominator")
 	}
 	quad := y.Quad()
